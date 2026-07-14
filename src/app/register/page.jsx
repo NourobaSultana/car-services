@@ -9,6 +9,7 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { registerUser } from "../actions/auth/registerUser";
 
 export default function page() {
   const handleSubmit = async (e) => {
@@ -17,7 +18,7 @@ export default function page() {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log({ name, email, password });
+    registerUser({ name, email, password });
   };
   return (
     <div>
