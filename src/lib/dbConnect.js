@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 // username-car_service
-// password-xxbfOSC5Yf36q6Z
+// password-6cIvrMKLsJEtMiRc
 // DB_NAME=car_DB
 
 const client = new MongoClient(process.env.MONGODB_URI);
