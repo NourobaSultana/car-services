@@ -7,51 +7,42 @@ const AboutUsSection = () => {
     <>
       <div className="mt-20 md:mt-24 lg:mt-32 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
         {/* Image Section */}
-        <div className="w-full lg:w-[520px] h-[430px] md:h-[500px] lg:h-[557px]">
-          <div className="relative w-fit mx-auto">
+        <div className="w-full lg:max-w-[521px]">
+          <div className="relative w-full max-w-[460px] lg:max-w-[521px] mx-auto h-[320px] sm:h-[400px] md:h-[500px] lg:h-[557px]">
             <Image
               src={image1}
               alt="Main Image"
               className="
-          rounded-xl
-          w-[280px]
-          h-[270px]
-          md:w-[360px]
-          md:h-[360px]
-          lg:w-[460px]
-          lg:h-[437px]
-          object-cover
-        "
+        w-[70%]
+        sm:w-[75%]
+        lg:w-[460px]
+        h-auto
+        aspect-[460/437]
+        rounded-xl
+        object-cover
+      "
             />
 
             <Image
               src={image2}
               alt="Second Image"
               className="
-          absolute
-          left-[110px]
-          top-[150px]
+        absolute
+        bottom-0
+        right-0
 
-          md:left-[170px]
-          md:top-[200px]
+        w-[48%]
+        sm:w-[52%]
+        lg:w-[327px]
 
-          lg:left-[190px]
-          lg:top-[225px]
+        h-auto
+        aspect-[327/332]
 
-          w-[190px]
-          h-[190px]
-
-          md:w-[260px]
-          md:h-[260px]
-
-          lg:w-[327px]
-          lg:h-[332px]
-
-          rounded-xl
-          border-4
-          border-white
-          object-cover
-        "
+        rounded-2xl
+        border-5
+        border-white
+        object-cover
+      "
             />
           </div>
         </div>

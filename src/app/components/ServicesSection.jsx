@@ -30,10 +30,9 @@ const ServicesSection = async () => {
         </p>
       </div>
 
-      <div className="px-4 md:px-6 lg:px-0 mt-8 md:mt-10 lg:mt-12">
-        <div className="max-w-[1140px] mx-auto">
-          {/* <div>{JSON.stringify(data)} {JSON.stringify(item)}</div> */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3  ">
+      <div className=" mt-8 md:mt-10 lg:mt-12">
+        <div className="max-w-[1140px] mx-auto items-center">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {data.map((item) => (
               <div
                 key={item._id}
@@ -53,7 +52,7 @@ const ServicesSection = async () => {
                 {/* Content */}
                 <div className="space-y-4 p-5">
                   <div>
-                    <h2 className="text-[18px] md:text-[22px] lg:text-[25px] font-bold text-gray-800 line-clamp-1">
+                    <h2 className="text-center md:text-left text-[18px] md:text-[22px] lg:text-[25px] font-bold text-gray-800 line-clamp-1">
                       {item.title}
                     </h2>
 
@@ -64,6 +63,7 @@ const ServicesSection = async () => {
 
                       <Link
                         href={`/services/${item._id}`}
+                        prefetch
                         className="flex h-12 w-12 items-center justify-center"
                       >
                         <Image src={arrow} width={24} height={24} alt="Arrow" />
@@ -73,6 +73,26 @@ const ServicesSection = async () => {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="mt-8 md:mt-10 lg:mt-[50px] flex justify-center">
+            <button
+              className="
+      rounded-lg
+      text-[#FF3811]
+      border-2
+      px-6
+      py-3
+      md:px-7
+      md:py-4
+    
+      font-bold
+      text-[14px]
+      md:text-[16px]
+      lg:text-[18px]
+    "
+            >
+              Get More Info
+            </button>
           </div>
         </div>
       </div>

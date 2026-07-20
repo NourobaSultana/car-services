@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { loginUser } from "../actions/auth/loginUser";
 
 export default function page() {
   const handleSubmit = async (e) => {
@@ -11,6 +12,7 @@ export default function page() {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    loginUser({ email, password });
     console.log(email, password);
   };
   return (
@@ -62,10 +64,11 @@ export default function page() {
                   className="h-14 w-full rounded-[10px] border border-[#E8E8E8] px-5 outline-none focus:border-[#FF3811]"
                 />
               </div>
-
-              <button className="h-14 w-full rounded-[10px] bg-[#FF3811] text-lg font-semibold text-white transition hover:bg-[#e2320d]">
-                Sign In
-              </button>
+              <Link href="/dashboard" prefetch>
+                <button className="h-14 w-full rounded-[10px] bg-[#FF3811] text-lg font-semibold text-white transition hover:bg-[#e2320d]">
+                  Sign In
+                </button>
+              </Link>
             </form>
 
             <p className="my-8 text-center text-[#737373]">Or Sign In with</p>
