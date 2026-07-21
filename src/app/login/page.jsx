@@ -1,4 +1,6 @@
 "use client";
+import { signIn } from "next-auth/react";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -12,8 +14,8 @@ export default function page() {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    loginUser({ email, password });
-    console.log(email, password);
+    await signIn("credentials", { email, password });
+    console.log({ email, password });
   };
   return (
     <div>
@@ -64,8 +66,16 @@ export default function page() {
                   className="h-14 w-full rounded-[10px] border border-[#E8E8E8] px-5 outline-none focus:border-[#FF3811]"
                 />
               </div>
-              <Link href="/dashboard" prefetch>
+              {/* <Link href="/dashboard" prefetch>
                 <button className="h-14 w-full rounded-[10px] bg-[#FF3811] text-lg font-semibold text-white transition hover:bg-[#e2320d]">
+                  Sign In
+                </button>
+              </Link> */}
+              <Link href="/">
+                <button
+                  type="submit"
+                  className="h-14 w-full rounded-[10px] bg-[#FF3811] text-lg font-semibold text-white transition hover:bg-[#e2320d]"
+                >
                   Sign In
                 </button>
               </Link>

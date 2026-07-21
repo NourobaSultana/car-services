@@ -18,7 +18,8 @@ export default function page() {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    registerUser({ name, email, password });
+    await registerUser({ name, email, password });
+    console.log(name, email, password);
   };
   return (
     <div>
@@ -80,13 +81,14 @@ export default function page() {
                   className="h-14 w-full rounded-lg border border-gray-200 px-5 outline-none transition focus:border-[#FF3811]"
                 />
               </div>
-
-              <button
-                type="submit"
-                className="h-14 w-full rounded-lg bg-[#FF3811] text-lg font-semibold text-white transition hover:bg-[#e62f0a]"
-              >
-                Sign Up
-              </button>
+              <Link href="/login">
+                <button
+                  type="submit"
+                  className="h-14 w-full rounded-lg bg-[#FF3811] text-lg font-semibold text-white transition hover:bg-[#e62f0a]"
+                >
+                  Sign Up
+                </button>
+              </Link>
             </form>
 
             <p className="my-8 text-center text-gray-500">Or Sign Up with</p>
