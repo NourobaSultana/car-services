@@ -1,21 +1,46 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { loginUser } from "../actions/auth/loginUser";
+// import { loginUser } from "../actions/auth/loginUser";
+import { useRouter } from "next/navigation";
 
 export default function page() {
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    await signIn("credentials", { email, password });
-    console.log({ email, password });
+
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        alert("Invalid email or password");
+        return;
+      }
+
+      const session = await getSession();
+
+      if (session?.user?.role === "admin") {
+        router.push("/dashboard");
+      } else {
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Authentication Failed");
+    }
   };
   return (
     <div>
@@ -66,19 +91,13 @@ export default function page() {
                   className="h-14 w-full rounded-[10px] border border-[#E8E8E8] px-5 outline-none focus:border-[#FF3811]"
                 />
               </div>
-              {/* <Link href="/dashboard" prefetch>
-                <button className="h-14 w-full rounded-[10px] bg-[#FF3811] text-lg font-semibold text-white transition hover:bg-[#e2320d]">
-                  Sign In
-                </button>
-              </Link> */}
-              <Link href="/">
-                <button
-                  type="submit"
-                  className="h-14 w-full rounded-[10px] bg-[#FF3811] text-lg font-semibold text-white transition hover:bg-[#e2320d]"
-                >
-                  Sign In
-                </button>
-              </Link>
+
+              <button
+                type="submit"
+                className="h-14 w-full rounded-[10px] bg-[#FF3811] text-lg font-semibold text-white transition hover:bg-[#e2320d]"
+              >
+                Sign In
+              </button>
             </form>
 
             <p className="my-8 text-center text-[#737373]">Or Sign In with</p>

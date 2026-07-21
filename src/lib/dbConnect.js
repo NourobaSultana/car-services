@@ -18,7 +18,7 @@ export default function dbConnect(collectionName) {
   });
   return client.db(process.env.DB_NAME).collection(collectionName);
 }
-const client = new MongoClient(process.env.MONGODB_URI);
+// const client = new MongoClient(process.env.MONGODB_URI);
 
 // export default async function connectToMongoDB(collectionName) {
 //   await client.connect();
