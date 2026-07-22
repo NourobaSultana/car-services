@@ -13,6 +13,7 @@ export const authOptions = {
       },
 
       async authorize(credentials) {
+        // send credentials to loginUser
         const user = await loginUser(credentials);
 
         if (!user) {

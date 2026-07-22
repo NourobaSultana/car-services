@@ -118,7 +118,7 @@ export default function page() {
 
             <p className="mt-8 text-center text-[#737373]">
               Have an account?{" "}
-              <Link href="/signup" className="font-semibold text-[#FF3811]">
+              <Link href="/register" className="font-semibold text-[#FF3811]">
                 Sign Up
               </Link>
             </p>

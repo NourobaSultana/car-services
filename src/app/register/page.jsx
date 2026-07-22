@@ -10,16 +10,21 @@ import {
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { registerUser } from "../actions/auth/registerUser";
+import { useRouter } from "next/navigation";
 
 export default function page() {
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    await registerUser({ name, email, password });
-    
+    const result = await registerUser({ name, email, password });
+    console.log("hello", result);
+    if (result?._id) {
+      router.push("/login");
+    }
     console.log(name, email, password);
   };
   return (
