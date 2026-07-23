@@ -4,32 +4,58 @@ import React from "react";
 import icon1 from "../../public/assets/icon/Frame.png";
 import icon2 from "../../public/assets/icon/Vector (4).png";
 
-const Navbar = ({ navMenu = [] }) => {
-  const menuLinks = {
-    Home: "/",
-    About: "/about",
-    Service: "/service",
-    Blog: "/blog",
-    Contact: "/contact",
-    Settings: "/settings",
-  };
-
+const Navbar = () => {
   const NavMenu = () => {
     return (
       <>
-        {navMenu.map((menu) => (
-          <li key={menu}>
-            <Link
-              href={menuLinks[menu]}
-              className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
-            >
-              {menu}
-            </Link>
-          </li>
-        ))}
+        <li>
+          <Link
+            href="/"
+            className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
+          >
+            Home
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            href="/about"
+            className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
+          >
+            About
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            href="/service"
+            className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
+          >
+            Service
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            href="/blog"
+            className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
+          >
+            Blog
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            href="/contact"
+            className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
+          >
+            Contact
+          </Link>
+        </li>
       </>
     );
   };
+
   return (
     <div className="w-full">
       <div className="navbar max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-0 py-3">
