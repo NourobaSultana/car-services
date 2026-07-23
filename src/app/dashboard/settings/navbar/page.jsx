@@ -1,7 +1,9 @@
+import { getMenus } from "./actions/getMenu";
 import MenuForm from "./components/MenuForm";
 import MenuTable from "./components/MenuTable";
 
-export default function NavbarManagement() {
+export default async function NavbarManagement() {
+  const menus = await getMenus();
   return (
     <div className="space-y-8">
       {/* Page Header */}
@@ -17,7 +19,7 @@ export default function NavbarManagement() {
       <MenuForm />
 
       {/* Table */}
-      <MenuTable />
+      <MenuTable menus={menus} />
     </div>
   );
 }

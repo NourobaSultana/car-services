@@ -3,55 +3,25 @@ import Link from "next/link";
 import React from "react";
 import icon1 from "../../public/assets/icon/Frame.png";
 import icon2 from "../../public/assets/icon/Vector (4).png";
+import { getMenus } from "@/app/dashboard/settings/navbar/actions/getMenu";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const menus = await getMenus();
   const NavMenu = () => {
     return (
       <>
-        <li>
-          <Link
-            href="/"
-            className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
-          >
-            Home
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            href="/about"
-            className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
-          >
-            About
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            href="/service"
-            className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
-          >
-            Service
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            href="/blog"
-            className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
-          >
-            Blog
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            href="/contact"
-            className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
-          >
-            Contact
-          </Link>
-        </li>
+        {menus
+          .filter((menu) => menu.status)
+          .map((menu) => (
+            <li key={menu._id}>
+              <Link
+                href={menu.path}
+                className="hover:bg-transparent hover:text-[#FF3811] border-b-2 border-transparent hover:border-[#FF3811] rounded-none transition-all duration-200"
+              >
+                {menu.title}
+              </Link>
+            </li>
+          ))}
       </>
     );
   };
