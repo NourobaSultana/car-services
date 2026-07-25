@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import icon1 from "../../public/assets/icon/Frame.png";
 import icon2 from "../../public/assets/icon/Vector (4).png";
-import { getMenus } from "@/app/dashboard/settings/navbar/actions/getMenu";
+import { getMenus } from "@/features/navbar/actions/getMenu";
 
 const Navbar = async () => {
   const menus = await getMenus();

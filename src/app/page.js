@@ -1,11 +1,11 @@
-import BannerSection from "./components/BannerSection";
-import AboutUsSection from "./components/AboutUsSection";
-import ServicesSection from "./components/ServicesSection";
-import ContactSection from "./components/ContactSection";
-import PopulrProducts from "./components/PopulrProducts";
-import MeetOurTeam from "./components/MeetOurTeam";
-import Why_choose from "./components/Why_choose";
-import Testimonial from "./components/Testimonial";
+import BannerSection from "../Components/home/BannerSection";
+import AboutUsSection from "../Components/home/AboutUsSection";
+import ServicesSection from "../Components/home/ServicesSection";
+import ContactSection from "../Components/home/ContactSection";
+import PopulrProducts from "../Components/home/PopulrProducts";
+import MeetOurTeam from "../Components/home/MeetOurTeam";
+import Why_choose from "../Components/home/Why_choose";
+import Testimonial from "../Components/home/Testimonial";
 import Navbar from "@/Components/Navbar";
 
 import dbConnect, { collectionNameObj } from "@/lib/dbConnect";

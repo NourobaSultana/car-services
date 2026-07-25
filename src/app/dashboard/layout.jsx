@@ -1,5 +1,5 @@
-import Sidebar from "@/Dashboard_Components/dashboard/Sidebar";
-import Topbar from "@/Dashboard_Components/dashboard/Topbar";
+import Sidebar from "@/Components/dashboard/Sidebar";
+import Topbar from "@/Components/dashboard/Topbar";
 import React from "react";
 
 export default function layout({ children }) {

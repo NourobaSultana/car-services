@@ -1,6 +1,6 @@
-import { getMenus } from "./actions/getMenu";
-import MenuForm from "./components/MenuForm";
-import MenuTable from "./components/MenuTable";
+import { getMenus } from "../../../../../features/navbar/actions/getMenu";
+import MenuForm from "../../../../../features/navbar/components/MenuForm";
+import MenuTable from "../../../../../features/navbar/components/MenuTable";
 
 export default async function NavbarManagement() {
   const menus = await getMenus();
