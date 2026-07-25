@@ -1,9 +1,6 @@
 "use server";
-
 import connectToMongoDB from "@/lib/dbConnect";
-
 // import dbConnect from "@/lib/dbConnect";
-
 export async function createMenu(data) {
   const menuCollection = await connectToMongoDB("navbar");
 
