@@ -59,7 +59,7 @@ export default function Sidebar() {
             <ul className="ml-5 mt-2 space-y-2 border-l pl-4">
               <li>
                 <Link
-                  href="/dashboard/settings/navbar"
+                  href="/dashboard/settings/cms/navbar"
                   className={`block px-3 py-2 rounded-md transition ${
                     pathname === "/dashboard/settings/navbar"
                       ? "bg-blue-600 text-white"
@@ -67,6 +67,18 @@ export default function Sidebar() {
                   }`}
                 >
                   Navbar Management
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/settings/cms/footer"
+                  className={`block px-3 py-2 rounded-md transition ${
+                    pathname === "/dashboard/settings/navbar"
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  Footer Management
                 </Link>
               </li>
             </ul>

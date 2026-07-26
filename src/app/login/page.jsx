@@ -3,7 +3,7 @@ import { signIn, getSession } from "next-auth/react";
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 // import { loginUser } from "../actions/auth/loginUser";
@@ -11,8 +11,11 @@ import { useRouter } from "next/navigation";
 
 export default function page() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const form = e.target;
     const email = form.email.value;
@@ -27,6 +30,7 @@ export default function page() {
 
       if (result?.error) {
         alert("Invalid email or password");
+        setLoading(false);
         return;
       }
 
@@ -41,6 +45,8 @@ export default function page() {
       console.log(error);
       alert("Authentication Failed");
     }
+
+    setLoading(false);
   };
   return (
     <div>
@@ -94,9 +100,10 @@ export default function page() {
 
               <button
                 type="submit"
-                className="h-14 w-full rounded-[10px] bg-[#FF3811] text-lg font-semibold text-white transition hover:bg-[#e2320d]"
+                disabled={loading}
+                className="h-14 w-full rounded-[10px] bg-[#FF3811] text-lg font-semibold text-white"
               >
-                Sign In
+                {loading ? "Signing In..." : "Sign In"}
               </button>
             </form>
 

@@ -9,6 +9,7 @@ import Testimonial from "../Components/home/Testimonial";
 import Navbar from "@/Components/Navbar";
 
 import dbConnect, { collectionNameObj } from "@/lib/dbConnect";
+import Footer from "@/Components/shared/Footer";
 
 export default async function Home() {
   const userCollection = await dbConnect(collectionNameObj.userCollection);
@@ -19,17 +20,22 @@ export default async function Home() {
   });
 
   return (
-    <div className="max-w-[1140px] mx-auto px-4 md:px-6 lg:px-0">
-      <Navbar navMenu={user?.navMenu} />
-
-      <BannerSection />
-      <AboutUsSection />
-      <ServicesSection />
-      <ContactSection />
-      <PopulrProducts />
-      <MeetOurTeam />
-      <Why_choose />
-      <Testimonial />
-    </div>
+    <>
+      {" "}
+      <div>
+        <div className="max-w-[1140px] mx-auto px-4 md:px-6 lg:px-0">
+          <Navbar navMenu={user?.navMenu} />
+          <BannerSection />
+          <AboutUsSection />
+          <ServicesSection />
+          <ContactSection />
+          <PopulrProducts />
+          <MeetOurTeam />
+          <Why_choose />
+          <Testimonial />
+        </div>
+        <Footer />
+      </div>
+    </>
   );
 }

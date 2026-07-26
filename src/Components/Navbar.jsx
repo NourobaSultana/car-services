@@ -7,6 +7,7 @@ import { getMenus } from "@/features/navbar/actions/getMenu";
 
 const Navbar = async () => {
   const menus = await getMenus();
+
   const NavMenu = () => {
     return (
       <>
