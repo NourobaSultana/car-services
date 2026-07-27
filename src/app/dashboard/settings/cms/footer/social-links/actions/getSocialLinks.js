@@ -2,15 +2,15 @@
 
 import connectToMongoDB from "@/lib/dbConnect";
 
-export async function getFooterSection() {
+export async function getSocialLinks() {
   try {
     const footerCollection = await connectToMongoDB("footer");
 
     const footer = await footerCollection.findOne({});
 
-    return footer;
+    return footer?.socialLinks || [];
   } catch (error) {
     console.log(error);
-    return null;
+    return [];
   }
 }
