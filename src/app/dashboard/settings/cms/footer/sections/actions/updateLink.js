@@ -11,20 +11,24 @@ export async function updateLink(data) {
 
     let movedLink = null;
 
+    // Remove link from old section
     const sectionsWithoutOldLink = footer.sections.map((section) => {
-      if (section._id !== data.oldSectionId) return section;
+      if (String(section._id) !== String(data.oldSectionId)) {
+        return section;
+      }
 
-      const remainingLinks = section.links.filter((link) => {
-        if (link._id === data.id) {
+      const remainingLinks = (section.links || []).filter((link) => {
+        if (String(link._id) === String(data.id)) {
           movedLink = {
             ...link,
             title: data.title,
             path: data.path,
             order: Number(data.order),
-            status: data.status === "true",
+            status: data.status,
           };
           return false;
         }
+
         return true;
       });
 
@@ -34,12 +38,17 @@ export async function updateLink(data) {
       };
     });
 
+    // Add link to new section
     const updatedSections = sectionsWithoutOldLink.map((section) => {
-      if (section._id !== data.sectionId) return section;
+      if (String(section._id) !== String(data.sectionId)) {
+        return section;
+      }
 
       return {
         ...section,
-        links: [...section.links, movedLink],
+        links: [...(section.links || []), movedLink].sort(
+          (a, b) => Number(a.order) - Number(b.order),
+        ),
       };
     });
 

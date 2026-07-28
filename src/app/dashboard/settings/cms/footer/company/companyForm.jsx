@@ -19,9 +19,11 @@ export default function CompanyForm({ companyInfo }) {
       companyName: formData.get("companyName"),
       description: formData.get("description"),
       email: formData.get("email"),
+      secondary_email: formData.get("secondary_email"),
       telephone: formData.get("telephone"),
       phone: formData.get("phone"),
       address: formData.get("address"),
+      secondary_address: formData.get("secondary_address"),
     };
 
     const result = await updateCompanyInfo(payload);
@@ -69,6 +71,12 @@ export default function CompanyForm({ companyInfo }) {
         placeholder="Email"
         className="input input-bordered w-full"
       />
+      <input
+        name="secondary_email"
+        defaultValue={companyInfo?.secondary_email}
+        placeholder="Secondary Email"
+        className="input input-bordered w-full"
+      />
 
       <input
         name="phone"
@@ -87,7 +95,14 @@ export default function CompanyForm({ companyInfo }) {
         name="address"
         defaultValue={companyInfo?.address}
         placeholder="Address"
-        className="textarea textarea-bordered w-full "
+        className="textarea textarea-bordered w-full"
+      />
+
+      <textarea
+        name="secondary_address"
+        defaultValue={companyInfo?.secondary_address}
+        placeholder="Secondary Address"
+        className="textarea textarea-bordered w-full"
       />
 
       <button disabled={loading} className="btn btn-primary">

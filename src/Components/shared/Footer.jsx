@@ -11,6 +11,7 @@ import { getCompanyInfo } from "@/app/dashboard/settings/cms/footer/company/acti
 
 export default async function Footer() {
   const footer = await getCompanyInfo();
+  console.log(JSON.stringify(footer.sections, null, 2));
 
   const socialIcons = {
     FaFacebookF,
@@ -63,22 +64,23 @@ export default async function Footer() {
             <p>{footer.companyInfo.mobile}</p>
 
             <p>{footer.companyInfo.email}</p>
+            <p>{footer.companyInfo.secondary_email}</p>
 
             <p>{footer.companyInfo.careerEmail}</p>
           </div>
 
           {/* Addresses */}
-          <div className="max-w-md space-y-5">
-            {footer.companyInfo.addresses
-              ?.filter((item) => item.status)
-              .sort((a, b) => a.order - b.order)
-              .map((address) => (
-                <div key={address._id}>
-                  <h4 className="mb-2 font-semibold">{address.title}</h4>
-
-                  <p className="text-white/80">{address.address}</p>
-                </div>
-              ))}
+          <div className="space-y-3">
+            <div className="max-w-md">
+              <p className="whitespace-pre-line text-white/80">
+                {footer.companyInfo.address}
+              </p>
+            </div>
+            <div className="max-w-md">
+              <p className="whitespace-pre-line text-white/80">
+                {footer.companyInfo.secondary_address}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -90,7 +92,7 @@ export default async function Footer() {
 
             <div className="mt-3 mb-7 h-[3px] w-16 rounded-full bg-gradient-to-r from-white to-white/20"></div>
 
-            <p className="max-w-[280px] text-[15px] leading-8 text-white/80">
+            <p className="w-full break-words text-[15px] leading-7 text-white/80">
               {footer.companyInfo.description}
             </p>
 
@@ -128,11 +130,10 @@ export default async function Footer() {
                   <h3 className="text-2xl font-bold">{section.title}</h3>
 
                   <div className="mt-3 mb-6 h-1 w-14 rounded-full bg-white"></div>
-
                   <ul className="space-y-4 text-white/80">
                     {section.links
                       ?.filter((link) => link && link.status)
-                      .sort((a, b) => (a.order || 0) - (b.order || 0))
+                      .sort((a, b) => a.order - b.order)
                       .map((link) => (
                         <li key={link._id}>
                           <Link

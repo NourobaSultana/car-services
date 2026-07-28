@@ -10,11 +10,15 @@ export async function deleteLink(sectionId, linkId) {
     const footer = await footerCollection.findOne({});
 
     const updatedSections = footer.sections.map((section) => {
-      if (section._id !== sectionId) return section;
+      if (String(section._id) !== String(sectionId)) {
+        return section;
+      }
 
       return {
         ...section,
-        links: section.links.filter((link) => link._id !== linkId),
+        links: (section.links || []).filter(
+          (link) => link && String(link._id) !== String(linkId),
+        ),
       };
     });
 
@@ -35,11 +39,11 @@ export async function deleteLink(sectionId, linkId) {
       message: "Link deleted successfully.",
     };
   } catch (error) {
-    console.log(error);
+    console.error("DELETE ERROR:", error);
 
     return {
       success: false,
-      message: "Delete failed.",
+      message: error.message, // temporary debugging
     };
   }
 }

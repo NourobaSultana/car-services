@@ -7,6 +7,8 @@ import SocialLinkForm from "./social-links/SocialLinkForm";
 import { getSections } from "./sections/actions/getSection";
 import SectionForm from "./sections/SectionForm";
 import SectionsTable from "./sections/SectionsTable";
+import LinkForm from "./sections/LinkForm";
+import LinksTable from "./sections/LinksTable";
 
 export default async function FooterPage() {
   const footer = await getCompanyInfo();
@@ -28,6 +30,9 @@ export default async function FooterPage() {
       </div>
       {/* company information */}
       <CompanyForm />
+      {/* Company Preview Table */}
+
+      <CompanyPreview footer={footer} />
       {/* Sections */}
 
       <div className="grid gap-6 lg:grid-cols-3">
@@ -49,9 +54,16 @@ export default async function FooterPage() {
           <SocialLinksTable socialLinks={socialLinks} />
         </div>
       </div>
-      {/* Table */}
 
-      <CompanyPreview footer={footer} />
+      <div className="grid gap-6 lg:grid-cols-3">
+        <div>
+          <LinkForm sections={sections} />
+        </div>
+
+        <div className="lg:col-span-2">
+          <LinksTable sections={sections} />
+        </div>
+      </div>
     </div>
   );
 }

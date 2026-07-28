@@ -16,6 +16,8 @@ export default function LinksTable({ sections }) {
 
     sectionList.forEach((section) => {
       (section.links || []).forEach((link) => {
+        if (!link) return;
+
         allLinks.push({
           ...link,
           sectionId: section._id,
@@ -25,31 +27,47 @@ export default function LinksTable({ sections }) {
       });
     });
 
-    return allLinks.sort((a, b) => a.order - b.order);
+    return allLinks.sort((a, b) => Number(a.order) - Number(b.order));
   }, [sectionList]);
 
   async function handleDelete(sectionId, linkId) {
+    console.log("===== DELETE =====");
+    console.log("Section ID:", sectionId);
+    console.log("Link ID:", linkId);
+
     const ok = window.confirm("Are you sure you want to delete this link?");
 
     if (!ok) return;
 
-    const result = await deleteLink(sectionId, linkId);
+    try {
+      const result = await deleteLink(sectionId, linkId);
 
-    if (result.success) {
+      console.log("Delete Result:", result);
+
+      if (!result.success) {
+        toast.error(result.message);
+        return;
+      }
+
       toast.success(result.message);
 
       setSectionList((prev) =>
         prev.map((section) => {
-          if (section._id !== sectionId) return section;
+          if (String(section._id) !== String(sectionId)) {
+            return section;
+          }
 
           return {
             ...section,
-            links: section.links.filter((link) => link._id !== linkId),
+            links: (section.links || []).filter(
+              (link) => link && String(link._id) !== String(linkId),
+            ),
           };
         }),
       );
-    } else {
-      toast.error(result.message);
+    } catch (error) {
+      console.error("Delete Error:", error);
+      toast.error("Delete failed.");
     }
   }
 
@@ -149,9 +167,7 @@ export default function LinksTable({ sections }) {
                     <td>{index + 1}</td>
 
                     <td>
-                      <span className="badge badge-info">
-                        {link.sectionTitle}
-                      </span>
+                      <span className="">{link.sectionTitle}</span>
                     </td>
 
                     <td className="font-medium">{link.title}</td>

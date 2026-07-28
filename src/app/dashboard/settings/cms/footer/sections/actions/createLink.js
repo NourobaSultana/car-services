@@ -10,7 +10,9 @@ export async function createLink(data) {
     const footer = await footerCollection.findOne({});
 
     const updatedSections = footer.sections.map((section) => {
-      if (section._id !== data.sectionId) return section;
+      if (String(section._id) !== String(data.sectionId)) {
+        return section;
+      }
 
       return {
         ...section,
@@ -21,7 +23,7 @@ export async function createLink(data) {
             title: data.title,
             path: data.path,
             order: Number(data.order),
-            status: data.status === "true",
+            status: data.status, // <-- boolean সরাসরি
           },
         ],
       };

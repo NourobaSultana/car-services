@@ -26,12 +26,12 @@ export default function EditLinkModal({
   useEffect(() => {
     if (selectedLink) {
       setForm({
-        id: selectedLink.id,
+        id: selectedLink._id, // ✅ Fix
         oldSectionId: selectedLink.oldSectionId,
         sectionId: selectedLink.sectionId,
         title: selectedLink.title,
         path: selectedLink.path,
-        order: selectedLink.order,
+        order: Number(selectedLink.order),
         status: selectedLink.status,
       });
     }
@@ -42,7 +42,7 @@ export default function EditLinkModal({
 
     setForm((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: name === "order" ? Number(value) : value,
     }));
   }
 
@@ -51,18 +51,12 @@ export default function EditLinkModal({
 
     setLoading(true);
 
-    const result = await updateLink({
-      ...form,
-      status: String(form.status),
-    });
+    const result = await updateLink(form);
 
     if (result.success) {
       toast.success(result.message);
 
-      onUpdated({
-        ...form,
-        status: form.status,
-      });
+      onUpdated(form);
 
       onClose();
     } else {
@@ -93,8 +87,8 @@ export default function EditLinkModal({
               onChange={handleChange}
               className="select select-bordered w-full"
             >
-              {sections
-                ?.sort((a, b) => a.order - b.order)
+              {[...sections]
+                .sort((a, b) => Number(a.order) - Number(b.order))
                 .map((section) => (
                   <option key={section._id} value={section._id}>
                     {section.title}
@@ -145,6 +139,7 @@ export default function EditLinkModal({
                 value={form.order}
                 onChange={handleChange}
                 required
+                min={1}
                 className="input input-bordered w-full"
               />
             </div>
@@ -163,7 +158,6 @@ export default function EditLinkModal({
                 className="select select-bordered w-full"
               >
                 <option value="true">Active</option>
-
                 <option value="false">Inactive</option>
               </select>
             </div>
@@ -172,14 +166,19 @@ export default function EditLinkModal({
           {/* Buttons */}
 
           <div className="modal-action">
-            <button type="button" className="btn" onClick={onClose}>
+            <button
+              type="button"
+              className="btn"
+              onClick={onClose}
+              disabled={loading}
+            >
               Cancel
             </button>
 
             <button
               type="submit"
-              disabled={loading}
               className="btn btn-primary"
+              disabled={loading}
             >
               {loading ? "Updating..." : "Update"}
             </button>

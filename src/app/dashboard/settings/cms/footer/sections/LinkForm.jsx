@@ -13,14 +13,17 @@ export default function LinkForm({ sections }) {
     setLoading(true);
 
     const formData = new FormData(e.target);
-
+    console.log(sections);
     const payload = {
       sectionId: formData.get("sectionId"),
       title: formData.get("title"),
       path: formData.get("path"),
-      order: formData.get("order"),
-      status: formData.get("status"),
+      order: Number(formData.get("order")),
+      status: formData.get("status") === "true",
     };
+
+    console.log(payload);
+    console.log("Status:", formData.get("status"));
 
     const result = await createLink(payload);
 
@@ -56,17 +59,18 @@ export default function LinkForm({ sections }) {
           <select
             name="sectionId"
             required
-            className="select select-bordered w-full"
             defaultValue=""
+            className="select select-bordered w-full"
           >
             <option value="" disabled>
               Select Section
             </option>
 
-            {sections
-              ?.sort((a, b) => a.order - b.order)
+            {(sections || [])
+              .slice()
+              .sort((a, b) => Number(a.order) - Number(b.order))
               .map((section) => (
-                <option key={section._id} value={section._id}>
+                <option key={section._id} value={String(section._id)}>
                   {section.title}
                 </option>
               ))}

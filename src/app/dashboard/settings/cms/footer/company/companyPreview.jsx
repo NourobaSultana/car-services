@@ -13,6 +13,9 @@ export default function CompanyPreview({ companyInfo }) {
         <p>
           <strong>Email:</strong> {companyInfo?.email}
         </p>
+        <p>
+          <strong>Secondary Email:</strong> {companyInfo?.secondary_email}
+        </p>
 
         <p>
           <strong>Phone:</strong> {companyInfo?.phone}
@@ -23,6 +26,9 @@ export default function CompanyPreview({ companyInfo }) {
 
         <p>
           <strong>Address:</strong> {companyInfo?.address}
+        </p>
+        <p>
+          <strong>Secondary_address:</strong> {companyInfo?.secondary_address}
         </p>
       </div>
     </div>
