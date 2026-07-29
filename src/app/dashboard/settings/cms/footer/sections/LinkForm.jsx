@@ -41,7 +41,7 @@ export default function LinkForm({ sections }) {
     <div className="rounded-xl border bg-white shadow">
       {/* Header */}
       <div className="border-b px-6 py-5">
-        <h2 className="text-xl font-semibold">Add Footer Link</h2>
+        <h2 className="text-xl font-semibold">Add Footer Section's Link</h2>
 
         <p className="mt-1 text-sm text-gray-500">
           Create a new link inside a footer section.

@@ -8,6 +8,19 @@ export async function createSocialLink(data) {
   try {
     const footerCollection = await connectToMongoDB("footer");
 
+    const footer = await footerCollection.findOne();
+
+    const existingSection = footer?.socialLinks?.find(
+      (social) => Number(social.order) === Number(data.order),
+    );
+
+    if (existingSection) {
+      return {
+        success: false,
+        message: "This Order Already exist. Please select another order",
+      };
+    }
+
     const newLink = {
       _id: Date.now().toString(),
       title: data.title,

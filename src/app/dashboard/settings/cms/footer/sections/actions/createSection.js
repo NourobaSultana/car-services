@@ -6,8 +6,10 @@ import { revalidatePath } from "next/cache";
 export async function createSection(data) {
   try {
     const footerCollection = await connectToMongoDB("footer");
+    
     const footer = await footerCollection.findOne();
-    const existingSection = footer?.section?.find(
+
+    const existingSection = footer?.sections?.find(
       (section) => Number(section.order) === Number(data.order),
     );
 

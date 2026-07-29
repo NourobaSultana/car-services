@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { deleteLink } from "./actions/deleteLink";
 import EditLinkModal from "./EditLinkModal";
@@ -143,7 +143,7 @@ export default function LinksTable({ sections }) {
 
         <div className="flex items-center justify-between border-b px-6 py-5">
           <div>
-            <h2 className="text-xl font-semibold">Footer Links</h2>
+            <h2 className="text-xl font-semibold">Footer Sections Links</h2>
 
             <p className="mt-1 text-sm text-gray-500">
               Manage all footer links.
@@ -178,47 +178,39 @@ export default function LinksTable({ sections }) {
                 </tr>
               ) : (
                 links.map((link, index) => (
-                  <tr key={link._id}>
-                    <td>{index + 1}</td>
+                  <React.Fragment key={link._id}>
+                    <tr>
+                      <td>{index + 1}</td>
 
-                    <td>
-                      <span className="">{link.sectionTitle}</span>
-                    </td>
+                      <td>{link.sectionTitle}</td>
 
-                    <td className="font-medium">{link.title}</td>
+                      <td>{link.title}</td>
 
-                    <td>
-                      <code>{link.path}</code>
-                    </td>
+                      <td>
+                        <code>{link.path}</code>
+                      </td>
 
-                    <td>{link.order}</td>
+                      <td>{link.order}</td>
 
-                    <td>
-                      {link.status ? (
-                        <span className="badge badge-success">Active</span>
-                      ) : (
-                        <span className="badge badge-error">Inactive</span>
-                      )}
-                    </td>
+                      <td>
+                        {link.status ? (
+                          <span className="badge badge-success">Active</span>
+                        ) : (
+                          <span className="badge badge-error">Inactive</span>
+                        )}
+                      </td>
 
-                    <td>
-                      <div className="flex justify-center gap-2">
-                        <button
-                          onClick={() => handleEdit(link)}
-                          className="btn btn-sm btn-warning"
-                        >
-                          Edit
-                        </button>
+                      <td>{/* Edit / Delete */}</td>
+                    </tr>
 
-                        <button
-                          onClick={() => handleDelete(link.sectionId, link._id)}
-                          className="btn btn-sm btn-error"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                    {(index + 1) % sectionList.length === 0 && (
+                      <tr>
+                        <td colSpan={7}>
+                          <div className="my-3 h-[2px] w-full bg-red-500"></div>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
                 ))
               )}
             </tbody>

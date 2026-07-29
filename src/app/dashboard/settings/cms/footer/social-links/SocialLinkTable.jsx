@@ -64,7 +64,7 @@ export default function SocialLinksTable({ socialLinks }) {
 
         <div className="flex items-center justify-between border-b px-6 py-5">
           <div>
-            <h2 className="text-xl font-semibold">Social Links</h2>
+            <h2 className="text-xl font-semibold">Social Links Preview</h2>
 
             <p className="mt-1 text-sm text-gray-500">
               Manage all social media links.

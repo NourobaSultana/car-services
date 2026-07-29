@@ -39,7 +39,9 @@ export default function SocialLinkForm() {
   return (
     <div className="rounded-xl border bg-white shadow">
       <div className="border-b px-6 py-5">
-        <h2 className="text-xl font-semibold">Add Social Link</h2>
+        <h2 className="text-xl font-semibold">
+          Add Social Link (Name,Url, & React_Icons)
+        </h2>
 
         <p className="mt-1 text-sm text-gray-500">
           Create a new social media link.

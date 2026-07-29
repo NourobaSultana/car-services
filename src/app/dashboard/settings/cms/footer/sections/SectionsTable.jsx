@@ -65,7 +65,9 @@ export default function SectionsTable({ sections }) {
 
         <div className="flex items-center justify-between border-b px-6 py-5">
           <div>
-            <h2 className="text-xl font-semibold">Footer Sections</h2>
+            <h2 className="text-xl font-semibold">
+              Footer Sections Name Preview
+            </h2>
 
             <p className="mt-1 text-sm text-gray-500">
               Manage footer sections.
