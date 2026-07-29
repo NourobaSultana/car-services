@@ -14,6 +14,8 @@ export async function updateCompanyInfo(data) {
           companyInfo: {
             logo: data.logo,
             companyName: data.companyName,
+            title: data.title,
+            tagline: data.tagline,
             description: data.description,
             email: data.email,
             secondary_email: data.secondary_email,

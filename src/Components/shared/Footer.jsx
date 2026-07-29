@@ -88,7 +88,9 @@ export default async function Footer() {
         <div className="mt-20 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 items-start">
           {/* About */}
           <div>
-            <h3 className="text-2xl font-bold  tracking-wide">About Us</h3>
+            <h3 className="text-2xl font-bold  tracking-wide">
+              {footer.companyInfo.title}
+            </h3>
 
             <div className="mt-3 mb-7 h-[3px] w-16 rounded-full bg-gradient-to-r from-white to-white/20"></div>
 

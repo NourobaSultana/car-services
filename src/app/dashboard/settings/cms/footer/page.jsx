@@ -29,10 +29,10 @@ export default async function FooterPage() {
         </div>
       </div>
       {/* company information */}
-      <CompanyForm />
+      <CompanyForm companyInfo={footer?.companyInfo} />
       {/* Company Preview Table */}
 
-      <CompanyPreview footer={footer} />
+      <CompanyPreview companyInfo={footer?.companyInfo} />
       {/* Sections */}
 
       <div className="grid gap-6 lg:grid-cols-3">
