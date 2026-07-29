@@ -7,6 +7,8 @@ export default function CompanyPreview({ companyInfo }) {
 
       <h3 className="text-lg font-bold">{companyInfo?.companyName}</h3>
 
+      <p className="mt-2 text-gray-600">{companyInfo?.tagline}</p>
+      <p className="mt-2 text-gray-600">{companyInfo?.title}</p>
       <p className="mt-2 text-gray-600">{companyInfo?.description}</p>
 
       <div className="mt-6 space-y-2 text-sm">

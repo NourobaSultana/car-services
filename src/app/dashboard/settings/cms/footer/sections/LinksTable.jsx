@@ -31,44 +31,59 @@ export default function LinksTable({ sections }) {
   }, [sectionList]);
 
   async function handleDelete(sectionId, linkId) {
-    console.log("===== DELETE =====");
-    console.log("Section ID:", sectionId);
-    console.log("Link ID:", linkId);
+    toast.custom((t) => (
+      <div className="rounded-lg border bg-white p-4 shadow">
+        <p className="font-medium">
+          Are you sure you want to delete this link?
+        </p>
 
-    const ok = window.confirm("Are you sure you want to delete this link?");
+        <div className="mt-3 flex gap-2">
+          <button
+            className="btn btn-sm btn-error"
+            onClick={async () => {
+              toast.dismiss(t);
 
-    if (!ok) return;
+              try {
+                const result = await deleteLink(sectionId, linkId);
 
-    try {
-      const result = await deleteLink(sectionId, linkId);
+                console.log("Delete Result:", result);
 
-      console.log("Delete Result:", result);
+                if (!result.success) {
+                  toast.error(result.message);
+                  return;
+                }
 
-      if (!result.success) {
-        toast.error(result.message);
-        return;
-      }
+                toast.success(result.message);
 
-      toast.success(result.message);
+                setSectionList((prev) =>
+                  prev.map((section) => {
+                    if (String(section._id) !== String(sectionId)) {
+                      return section;
+                    }
 
-      setSectionList((prev) =>
-        prev.map((section) => {
-          if (String(section._id) !== String(sectionId)) {
-            return section;
-          }
+                    return {
+                      ...section,
+                      links: (section.links || []).filter(
+                        (link) => link && String(link._id) !== String(linkId),
+                      ),
+                    };
+                  }),
+                );
+              } catch (error) {
+                console.error("Delete Error:", error);
+                toast.error("Delete failed.");
+              }
+            }}
+          >
+            Delete
+          </button>
 
-          return {
-            ...section,
-            links: (section.links || []).filter(
-              (link) => link && String(link._id) !== String(linkId),
-            ),
-          };
-        }),
-      );
-    } catch (error) {
-      console.error("Delete Error:", error);
-      toast.error("Delete failed.");
-    }
+          <button className="btn btn-sm" onClick={() => toast.dismiss(t)}>
+            Cancel
+          </button>
+        </div>
+      </div>
+    ));
   }
 
   function handleEdit(link) {

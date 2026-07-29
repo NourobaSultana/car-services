@@ -12,21 +12,40 @@ export default function SectionsTable({ sections }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   async function handleDelete(id) {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this section?",
-    );
+    toast.custom((t) => (
+      <div className="rounded-lg border bg-white p-4 shadow">
+        <p className="font-medium">
+          Are you sure you want to delete this section?
+        </p>
 
-    if (!confirmDelete) return;
+        <div className="mt-3 flex gap-2">
+          <button
+            className="btn btn-sm btn-error"
+            onClick={async () => {
+              toast.dismiss(t);
 
-    const result = await deleteSection(id);
+              const result = await deleteSection(id);
 
-    if (result.success) {
-      toast.success(result.message);
+              if (result.success) {
+                toast.success(result.message);
 
-      setSectionList((prev) => prev.filter((item) => item._id !== id));
-    } else {
-      toast.error(result.message);
-    }
+                setSectionList((prev) =>
+                  prev.filter((item) => String(item._id) !== String(id)),
+                );
+              } else {
+                toast.error(result.message);
+              }
+            }}
+          >
+            Delete
+          </button>
+
+          <button className="btn btn-sm" onClick={() => toast.dismiss(t)}>
+            Cancel
+          </button>
+        </div>
+      </div>
+    ));
   }
 
   function handleEdit(section) {
