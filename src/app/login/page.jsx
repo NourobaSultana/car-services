@@ -1,12 +1,10 @@
 "use client";
 import { signIn, getSession } from "next-auth/react";
-
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-// import { loginUser } from "../actions/auth/loginUser";
 import { useRouter } from "next/navigation";
 
 export default function page() {

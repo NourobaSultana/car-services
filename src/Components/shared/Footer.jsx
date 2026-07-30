@@ -85,18 +85,20 @@ export default async function Footer() {
         </div>
 
         {/* Footer Links */}
-        <div className="mt-20 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 items-start">
+        <div className="mt-20 flex flex-wrap justify-center gap-10">
           {/* About */}
-          <div>
+          <div className="w-full md:w-[45%] lg:w-[22%]">
             <h3 className="text-2xl font-bold  tracking-wide">
               {footer.companyInfo.title}
             </h3>
 
             <div className="mt-3 mb-7 h-[3px] w-16 rounded-full bg-gradient-to-r from-white to-white/20"></div>
 
-            <p className="w-full break-words text-[15px] leading-7 text-white/80">
-              {footer.companyInfo.description}
-            </p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: footer.companyInfo.description,
+              }}
+            />
 
             <div className="mt-8 flex gap-4">
               {footer.socialLinks
@@ -128,7 +130,7 @@ export default async function Footer() {
               console.log("Links:", section.links);
 
               return (
-                <div key={section._id}>
+                <div key={section._id} className="w-full md:w-[45%] lg:w-[22%]">
                   <h3 className="text-2xl font-bold">{section.title}</h3>
 
                   <div className="mt-3 mb-6 h-1 w-14 rounded-full bg-white"></div>

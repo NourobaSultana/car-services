@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { toast } from "sonner";
 import { updateCompanyInfo } from "./actions/updateCompanyInfo";
 import { useRouter } from "next/navigation";
+import CKEditorField from "./CkEditorFiled";
 
 export default function CompanyForm({ companyInfo }) {
   const router = useRouter();
@@ -79,11 +80,15 @@ export default function CompanyForm({ companyInfo }) {
         />
       </div>
 
-      <textarea
+      {/* <textarea
         name="description"
         defaultValue={companyInfo?.description}
         placeholder="Description"
         className="textarea textarea-bordered w-full"
+      /> */}
+      <CKEditorField
+        name="description"
+        defaultValue={companyInfo?.description}
       />
 
       <input
